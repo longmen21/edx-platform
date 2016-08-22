@@ -343,9 +343,9 @@ class LoncapaResponse(object):
         # Tricky: label None means output defaults, while '' means output empty label
         if label is None:
             if correct:
-                label = _(u'Correct')
+                label = u'<span class="icon fa fa-check" aria-hidden="true"></span>Correct'
             else:
-                label = _(u'Incorrect')
+                label = u'<span class="icon fa fa-close" aria-hidden="true"></span>Incorrect'
 
         # self.runtime.track_function('get_demand_hint', event_info)
         # This this "feedback hint" event
@@ -371,7 +371,7 @@ class LoncapaResponse(object):
             hints_wrap = u'<div class="{0}">{1}</div>'.format(QUESTION_HINT_MULTILINE, hints_wrap)
         label_wrap = ''
         if label:
-            label_wrap = u'<div class="{0}">{1}: </div>'.format(QUESTION_HINT_LABEL_STYLE, label)
+            label_wrap = u'<span class="{0}">{1}: </span>'.format(QUESTION_HINT_LABEL_STYLE, label)
 
         # Establish the outer style
         if correct:
@@ -379,8 +379,12 @@ class LoncapaResponse(object):
         else:
             style = QUESTION_HINT_INCORRECT_STYLE
 
+        answer_for = _('Answer for')
+
         # Ready to go
-        return u'<div class="{0}">{1}{2}</div>'.format(style, label_wrap, hints_wrap)
+        # pylint: disable=line-too-long
+        return u'<div class="explanation-title" aria-describedby="{0} {1}-problem-title">Answer</div><div class="{2}">{3}{4}</div>'.format(answer_for, self.capa_module.location.to_deprecated_string(), style, label_wrap, hints_wrap)
+        # pylint: enable=line-too-long
 
     def get_extended_hints(self, student_answers, new_cmap):
         """

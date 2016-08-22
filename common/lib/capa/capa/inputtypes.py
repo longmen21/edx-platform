@@ -87,8 +87,6 @@ class Status(object):
             'incorrect': _('incorrect'),
             'partially-correct': _('partially correct'),
             'incomplete': _('incomplete'),
-            'unanswered': _('unanswered'),
-            'unsubmitted': _('unanswered'),
             'queued': _('processing'),
         }
         tooltips = {
@@ -96,8 +94,6 @@ class Status(object):
             'correct': _('This answer is correct.'),
             'incorrect': _('This answer is incorrect.'),
             'partially-correct': _('This answer is partially correct.'),
-            'unanswered': _('This answer is unanswered.'),
-            'unsubmitted': _('This answer is unanswered.'),
             'queued': _('This answer is being processed.'),
         }
         self.display_name = names.get(status, unicode(status))
