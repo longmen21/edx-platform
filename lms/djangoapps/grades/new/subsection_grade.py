@@ -50,6 +50,9 @@ class SubsectionGrade(object):
         ):
             self._compute_block_score(student, descendant_key, course_structure, scores_client, submissions_scores)
 
+        # self.scores may hold outdated data, force it to refresh on next access
+        lazy.invalidate(self, 'scores')
+
         self.all_total, self.graded_total = graders.aggregate_scores(self.scores, self.display_name, self.location)
 
     def save(self, student, subsection, course):
