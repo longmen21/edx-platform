@@ -780,7 +780,6 @@ div.problem {
     .status {
       display: inline-block;
       margin-top: ($baseline/2);
-      @include margin-left($baseline*.75);
       background: none;
     }
 
@@ -831,6 +830,7 @@ div.problem {
   }
 
   .trailing_text {
+    @include margin-right($baseline/2);
     display: inline-block;
   }
 }
@@ -1512,7 +1512,7 @@ div.problem {
 
     label.choicetextgroup_show_correct, section.choicetextgroup_show_correct {
       &:after {
-        margin-left:15px;
+        @include margin-left($baseline*.75);
         content: url('#{$static-path}/images/correct-icon.png');
       }
     }
@@ -1538,15 +1538,15 @@ div.problem .imageinput.capa_inputtype {
   }
 
   .correct {
-    background: url('#{$static-path}/images/correct-icon.png') center center no-repeat;
+    @include status-icon($correct, "\f00c");
   }
 
   .incorrect {
-    background: url('#{$static-path}/images/incorrect-icon.png') center center no-repeat;
+    @include status-icon($incorrect, "\f00d");
   }
 
   .partially-correct {
-    background: url('#{$static-path}/images/partially-correct-icon.png') center center no-repeat;
+    @include status-icon($partiallycorrect, "\f069");
   }
 }
 
@@ -1565,14 +1565,14 @@ div.problem .annotation-input {
   }
 
   .correct {
-    background: url('#{$static-path}/images/correct-icon.png') center center no-repeat;
+    @include status-icon($correct, "\f00c");
   }
 
   .incorrect {
-    background: url('#{$static-path}/images/incorrect-icon.png') center center no-repeat;
+    @include status-icon($incorrect, "\f00d");
   }
 
   .partially-correct {
-    background: url('#{$static-path}/images/partially-correct-icon.png') center center no-repeat;
+    @include status-icon($partiallycorrect, "\f069");
   }
 }

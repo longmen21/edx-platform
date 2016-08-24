@@ -379,11 +379,9 @@ class LoncapaResponse(object):
         else:
             style = QUESTION_HINT_INCORRECT_STYLE
 
-        answer_for = _('Answer for')
-
         # Ready to go
         # pylint: disable=line-too-long
-        return u'<div class="explanation-title" aria-describedby="{0} {1}-problem-title">Answer</div><div class="{2}">{3}{4}</div>'.format(answer_for, self.capa_module.location.to_deprecated_string(), style, label_wrap, hints_wrap)
+        return u'<div class="{0}"><div class="explanation-title">{1}</div>{2}{3}</div>'.format(style, _("Answer"), label_wrap, hints_wrap)
         # pylint: enable=line-too-long
 
     def get_extended_hints(self, student_answers, new_cmap):

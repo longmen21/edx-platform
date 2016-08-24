@@ -87,6 +87,8 @@ class Status(object):
             'incorrect': _('incorrect'),
             'partially-correct': _('partially correct'),
             'incomplete': _('incomplete'),
+            'unanswered': _('unanswered'),
+            'unsubmitted': _('unanswered'),
             'queued': _('processing'),
         }
         tooltips = {
