@@ -220,7 +220,10 @@ class CapaDescriptor(CapaFields, RawDescriptor):
     @property
     def problem_types(self):
         """ Low-level problem type introspection for content libraries filtering by problem type """
-        tree = etree.XML(self.data)
+        try:
+            tree = etree.XML(self.data)
+        except etree.XMLSyntaxError:
+            return {}  # short-term fix to prevent errors (TNL-5057). Will be more properly addressed in TNL-4525.
         registered_tags = responsetypes.registry.registered_tags()
         return set([node.tag for node in tree.iter() if node.tag in registered_tags])
 
@@ -263,7 +266,7 @@ class CapaDescriptor(CapaFields, RawDescriptor):
         Returns whether the given view has support for the given functionality.
         """
         if functionality == "multi_device":
-            return all(
+            return self.problem_types and all(
                 responsetypes.registry.get_class_for_tag(tag).multi_device_support
                 for tag in self.problem_types
             )
